@@ -48,4 +48,5 @@ group :test do
   gem 'ruby-prof'
   gem 'mocha'
   gem 'capybara'
+  gem 'benchmark-ips'
 end

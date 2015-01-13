@@ -1,6 +1,11 @@
 class DocumentsController < ApplicationController
+  def index
+    @documents = Document.all
+    render text: "yeehaw"
+  end
+
   def show
-    fresh_when etag: @recording
+    @document = Document.find(params[:id])
   end
 
   def new

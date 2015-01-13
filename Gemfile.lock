@@ -59,6 +59,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     arel (6.0.0)
+    benchmark-ips (2.1.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -168,6 +169,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  benchmark-ips
   byebug
   capybara
   coffee-rails (~> 4.1.0)
