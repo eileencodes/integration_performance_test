@@ -46,6 +46,7 @@ end
 
 group :test do
   gem 'ruby-prof'
+  gem 'flamegraph'
   gem 'mocha'
   gem 'capybara'
   gem 'benchmark-ips'

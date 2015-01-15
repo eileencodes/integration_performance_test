@@ -60,8 +60,6 @@ GEM
   specs:
     arel (6.0.0)
     benchmark-ips (2.1.0)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -81,10 +79,14 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     columnize (0.9.0)
-    debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     erubis (2.7.0)
     execjs (2.2.2)
+    fast_stack (0.1.0)
+      rake
+      rake-compiler
+    flamegraph (0.0.5)
+      fast_stack
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -122,6 +124,8 @@ GEM
     rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
     rake (10.4.2)
+    rake-compiler (0.9.2)
+      rake
     rdoc (4.2.0)
       json (~> 1.4)
     ruby-prof (0.15.2)
@@ -173,6 +177,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
+  flamegraph
   jbuilder (~> 2.0)
   jquery-rails
   mocha
