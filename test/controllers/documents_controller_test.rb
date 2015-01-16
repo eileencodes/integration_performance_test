@@ -2,6 +2,11 @@ require 'test_helper'
 
 class DocumentsControllerTest < ActionController::TestCase
   test "index" do
+    get :index
+    assert_equal 200, response.status
+  end
+
+  test "index rp" do
     result = RubyProf.profile do
       get :index
       assert_equal 200, response.status
@@ -11,13 +16,21 @@ class DocumentsControllerTest < ActionController::TestCase
   end
 
   test "index flame" do
-    Flamegraph.generate("controller_index.html") do
+    Flamegraph.generate("graphs/#{Time.now}_controller_index.html") do
       get :index
       assert_equal 200, response.status
     end
   end
 
   test "create" do
+    post :create, document: { title: "New things", content: "Doing them" }
+
+    document = Document.last
+    assert_equal 'New things', document.title
+    assert_equal 'Doing them', document.content
+  end
+
+  test "create rp" do
     result = RubyProf.profile do
       post :create, document: { title: "New things", content: "Doing them" }
 
@@ -30,7 +43,7 @@ class DocumentsControllerTest < ActionController::TestCase
   end
 
   test "create flame" do
-    Flamegraph.generate("controller_create.html") do
+    Flamegraph.generate("graphs/#{Time.now}_controller_create.html") do
       post :create, document: { title: "New things", content: "Doing them" }
 
       document = Document.last
