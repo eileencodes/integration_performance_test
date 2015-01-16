@@ -6,7 +6,7 @@ class DocumentsControllerTest < ActionController::TestCase
       get :index
       assert_equal 200, response.status
     end
-    printer = RubyProf::GraphHtmlPrinter.new(result)
+    printer = RubyProf::CallStackPrinter.new(result)
     printer.print(STDOUT, {})
   end
 
@@ -25,7 +25,7 @@ class DocumentsControllerTest < ActionController::TestCase
       assert_equal 'New things', document.title
       assert_equal 'Doing them', document.content
     end
-    printer = RubyProf::GraphHtmlPrinter.new(result)
+    printer = RubyProf::CallStackPrinter.new(result)
     printer.print(STDOUT, {})
   end
 

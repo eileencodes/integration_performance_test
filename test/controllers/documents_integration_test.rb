@@ -7,7 +7,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
       get '/documents'
       assert_equal 200, response.status
     end
-    printer = RubyProf::GraphHtmlPrinter.new(result)
+    printer = RubyProf::CallStackPrinter.new(result)
     printer.print(STDOUT, {})
   end
 
@@ -26,7 +26,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
       assert_equal 'New things', document.title
       assert_equal 'Doing them', document.content
     end
-    printer = RubyProf::GraphHtmlPrinter.new(result)
+    printer = RubyProf::CallStackPrinter.new(result)
     printer.print(STDOUT, {})
   end
 
