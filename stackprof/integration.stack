@@ -1,0 +1,36 @@
+==================================
+  Mode: cpu(1000)
+  Samples: 2074 (0.00% miss rate)
+  GC: 180 (8.68%)
+==================================
+     TOTAL    (pct)     SAMPLES    (pct)     FRAME
+       685  (33.0%)         407  (19.6%)     block in Module#delegate
+        76   (3.7%)          65   (3.1%)     SQLite3::Database#prepare
+        48   (2.3%)          48   (2.3%)     Set#include?
+        48   (2.3%)          48   (2.3%)     Rack::Utils::HeaderHash#[]=
+        50   (2.4%)          40   (1.9%)     Rack::Utils#parse_nested_query
+        36   (1.7%)          36   (1.7%)     ThreadSafe::NonConcurrentCacheBackend#[]
+        59   (2.8%)          28   (1.4%)     ActiveSupport::Subscriber#start
+        26   (1.3%)          26   (1.3%)     ActiveSupport::Notifications::Event#initialize
+        26   (1.3%)          26   (1.3%)     ActiveSupport::PerThreadRegistry#instance
+        25   (1.2%)          25   (1.2%)     String#blank?
+        25   (1.2%)          25   (1.2%)     URI::RFC3986_Parser#split
+       753  (36.3%)          22   (1.1%)     block in ActionDispatch::Routing::RouteSet#url_helpers
+        20   (1.0%)          20   (1.0%)     Rails::Engine#routes
+        19   (0.9%)          19   (0.9%)     Rack::BodyProxy#initialize
+       642  (31.0%)          19   (0.9%)     Rack::Runtime#call
+        16   (0.8%)          16   (0.8%)     ActiveSupport::Configurable::ClassMethods#config
+        15   (0.7%)          15   (0.7%)     ActiveSupport::Notifications::Fanout::Subscribers::Evented#subscribed_to?
+        21   (1.0%)          14   (0.7%)     block (2 levels) in Class#class_attribute
+        13   (0.6%)          13   (0.6%)     block in ActionDispatch::Integration::Runner#copy_session_variables!
+        35   (1.7%)          13   (0.6%)     Rack::MockRequest.env_for
+        13   (0.6%)          13   (0.6%)     ActiveRecord::Base.logger
+        12   (0.6%)          12   (0.6%)     Mime::Type.lookup
+        12   (0.6%)          12   (0.6%)     ActionDispatch::Request::Session::Options#initialize
+        11   (0.5%)          11   (0.5%)     block (4 levels) in Class#class_attribute
+        23   (1.1%)          11   (0.5%)     ActionDispatch::Request#initialize
+        15   (0.7%)          11   (0.5%)     ActionView::LookupContext#formats=
+        11   (0.5%)          11   (0.5%)     Rack::Utils::KeySpaceConstrainedParams#to_params_hash
+        11   (0.5%)          11   (0.5%)     ActiveSupport::InheritableOptions#initialize
+        12   (0.6%)          10   (0.5%)     Rack::Utils#parse_query
+        13   (0.6%)          10   (0.5%)     ActionDispatch::Http::ParameterFilter::CompiledFilter.compile
