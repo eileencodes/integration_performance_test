@@ -13,18 +13,18 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
       get '/documents'
       assert_equal 200, response.status
     end
-    File.open('graphs/inside_minitest/index_integration_callstack.html', 'w') do |file|
+    File.open('graphs/rails_only/index_integration_callstack.html', 'w') do |file|
       RubyProf::CallStackPrinter.new(result).print(file)
     end
 
-    File.open('graphs/inside_minitest/index_integration_htmlgraph.html', 'w') do |file|
+    File.open('graphs/rails_only/index_integration_htmlgraph.html', 'w') do |file|
       RubyProf::GraphHtmlPrinter.new(result).print(file)
     end
   end
 
   # ruby -I lib:test test/integration/documents_integration_test.rb -n test_index_flame
   test "index flame" do
-    Flamegraph.generate("graphs/inside_minitest/index_integration_flamegraph.html") do
+    Flamegraph.generate("graphs/rails_only/index_integration_flamegraph.html") do
       get '/documents'
       assert_equal 200, response.status
     end
@@ -48,18 +48,18 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
       assert_equal 'New things', document.title
       assert_equal 'Doing them', document.content
     end
-    File.open('graphs/inside_minitest/create_integration_callstack.html', 'w') do |file|
+    File.open('graphs/rails_only/create_integration_callstack.html', 'w') do |file|
       RubyProf::CallStackPrinter.new(result).print(file)
     end
 
-    File.open('graphs/inside_minitest/create_integration_htmlgraph.html', 'w') do |file|
+    File.open('graphs/rails_only/create_integration_htmlgraph.html', 'w') do |file|
       RubyProf::GraphHtmlPrinter.new(result).print(file)
     end
   end
 
   # ruby -I lib:test test/integration/documents_integration_test.rb -n test_create_flame
   test "create flame" do
-    Flamegraph.generate("graphs/inside_minitest/create_integration_flamegraph.html") do
+    Flamegraph.generate("graphs/rails_only/create_integration_flamegraph.html") do
       post '/documents', document: { title: "New things", content: "Doing them" }
 
       document = Document.last
