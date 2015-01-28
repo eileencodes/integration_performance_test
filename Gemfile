@@ -50,4 +50,5 @@ group :test do
   gem 'mocha'
   gem 'capybara'
   gem 'benchmark-ips'
+  gem 'stackprof'
 end
