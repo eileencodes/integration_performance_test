@@ -23,9 +23,19 @@ class DocumentsControllerTest < ActionController::TestCase
     end
   end
 
-  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_index_sp
-  test "index sp" do
-    StackProf.run(mode: :cpu, out: 'graphs/rails_only/index_controller_stackprof.dump') do
+  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_index_sp_cpu
+  test "index sp cpu" do
+    StackProf.run(mode: :cpu, out: 'graphs/rails_only/index_controller_stackprof_cpu.dump') do
+      3000.times do
+        get :index
+        assert_equal 200, response.status
+      end
+    end
+  end
+
+  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_index_sp_wall
+  test "index sp wall" do
+    StackProf.run(mode: :wall, out: 'graphs/rails_only/index_controller_stackprof_wall.dump') do
       3000.times do
         get :index
         assert_equal 200, response.status
@@ -68,9 +78,9 @@ class DocumentsControllerTest < ActionController::TestCase
     end
   end
 
-  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_create_sp
-  test "create sp" do
-    StackProf.run(mode: :cpu, out: 'graphs/rails_only/create_controller_stackprof.dump') do
+  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_create_sp_cpu
+  test "create sp cpu" do
+    StackProf.run(mode: :cpu, out: 'graphs/rails_only/create_controller_stackprof_cpu.dump') do
       3000.times do
         post :create, document: { title: "New things", content: "Doing them" }
 
@@ -81,6 +91,18 @@ class DocumentsControllerTest < ActionController::TestCase
     end
   end
 
+  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_create_sp_wall
+  test "create sp wall" do
+    StackProf.run(mode: :wall, out: 'graphs/rails_only/create_controller_stackprof_wall.dump') do
+      3000.times do
+        post :create, document: { title: "New things", content: "Doing them" }
+
+        document = Document.last
+        assert_equal 'New things', document.title
+        assert_equal 'Doing them', document.content
+      end
+    end
+  end
   # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_create_flame
   test "create flame" do
     Flamegraph.generate("graphs/rails_only/create_controller_flamegraph.html") do
