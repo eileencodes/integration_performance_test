@@ -23,6 +23,16 @@ class DocumentsControllerTest < ActionController::TestCase
     end
   end
 
+  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_index_sp
+  test "index sp" do
+    StackProf.run(mode: :cpu, out: 'graphs/rails_only/index_controller_stackprof.dump') do
+      3000.times do
+        get :index
+        assert_equal 200, response.status
+      end
+    end
+  end
+
   # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_index_flame
   test "index flame" do
     Flamegraph.generate("graphs/rails_only/index_controller_flamegraph.html") do
@@ -55,6 +65,19 @@ class DocumentsControllerTest < ActionController::TestCase
 
     File.open('graphs/rails_only/create_controller_htmlgraph.html', 'w') do |file|
       RubyProf::GraphHtmlPrinter.new(result).print(file)
+    end
+  end
+
+  # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_create_sp
+  test "create sp" do
+    StackProf.run(mode: :cpu, out: 'graphs/rails_only/create_controller_stackprof.dump') do
+      3000.times do
+        post :create, document: { title: "New things", content: "Doing them" }
+
+        document = Document.last
+        assert_equal 'New things', document.title
+        assert_equal 'Doing them', document.content
+      end
     end
   end
 
