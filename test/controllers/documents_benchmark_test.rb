@@ -8,7 +8,7 @@ class DocumentsControllerTest < ActionController::TestCase
   end
 
   test "create" do
-    post :create, document: { title: "New things", content: "Doing them" }
+    post :create, params: { document: { title: "New things", content: "Doing them" } }
 
     document = Document.last
     assert_equal 'New things', document.title
@@ -23,7 +23,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
   end
 
   test "create" do
-    post '/documents', document: { title: "New things", content: "Doing them" }
+    post '/documents', params: { document: { title: "New things", content: "Doing them" } }
 
     document = Document.last
     assert_equal 'New things', document.title

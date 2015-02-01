@@ -52,7 +52,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
 
   # standard test
   test "create" do
-    post '/documents', document: { title: "New things", content: "Doing them" }
+    post '/documents', params: { document: { title: "New things", content: "Doing them" } }
 
     document = Document.last
     assert_equal 'New things', document.title
@@ -62,7 +62,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
   # ruby -I lib:test test/integration/documents_integration_test.rb -n test_create_rp
   test "create rp" do
     result = RubyProf.profile do
-      post '/documents', document: { title: "New things", content: "Doing them" }
+      post '/documents', params: { document: { title: "New things", content: "Doing them" } }
 
       document = Document.last
       assert_equal 'New things', document.title
@@ -81,7 +81,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
   test "create sp" do
     StackProf.run(mode: :cpu, out: 'graphs/rails_only/create_integration_stackprof_cpu.dump') do
       3000.times do
-        post '/documents', document: { title: "New things", content: "Doing them" }
+        post '/documents', params: { document: { title: "New things", content: "Doing them" } }
 
         document = Document.last
         assert_equal 'New things', document.title
@@ -94,7 +94,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
   test "create sp wall" do
     StackProf.run(mode: :wall, out: 'graphs/rails_only/create_integration_stackprof_wall.dump') do
       3000.times do
-        post '/documents', document: { title: "New things", content: "Doing them" }
+        post '/documents', params: { document: { title: "New things", content: "Doing them" } }
 
         document = Document.last
         assert_equal 'New things', document.title
@@ -106,7 +106,7 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
   # ruby -I lib:test test/integration/documents_integration_test.rb -n test_create_flame
   test "create flame" do
     Flamegraph.generate("graphs/rails_only/create_integration_flamegraph.html") do
-      post '/documents', document: { title: "New things", content: "Doing them" }
+      post '/documents', params: { document: { title: "New things", content: "Doing them" } }
 
       document = Document.last
       assert_equal 'New things', document.title

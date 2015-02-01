@@ -53,7 +53,7 @@ class DocumentsControllerTest < ActionController::TestCase
 
   # standard test
   test "create" do
-    post :create, document: { title: "New things", content: "Doing them" }
+    post :create, params: { document: { title: "New things", content: "Doing them" } }
 
     document = Document.last
     assert_equal 'New things', document.title
@@ -63,7 +63,7 @@ class DocumentsControllerTest < ActionController::TestCase
   # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_create_rp
   test "create rp" do
     result = RubyProf.profile do
-      post :create, document: { title: "New things", content: "Doing them" }
+      post :create, params: { document: { title: "New things", content: "Doing them" } }
 
       document = Document.last
       assert_equal 'New things', document.title
@@ -82,7 +82,7 @@ class DocumentsControllerTest < ActionController::TestCase
   test "create sp cpu" do
     StackProf.run(mode: :cpu, out: 'graphs/rails_only/create_controller_stackprof_cpu.dump') do
       3000.times do
-        post :create, document: { title: "New things", content: "Doing them" }
+        post :create, params: { document: { title: "New things", content: "Doing them" } }
 
         document = Document.last
         assert_equal 'New things', document.title
@@ -95,7 +95,7 @@ class DocumentsControllerTest < ActionController::TestCase
   test "create sp wall" do
     StackProf.run(mode: :wall, out: 'graphs/rails_only/create_controller_stackprof_wall.dump') do
       3000.times do
-        post :create, document: { title: "New things", content: "Doing them" }
+        post :create, params: { document: { title: "New things", content: "Doing them" } }
 
         document = Document.last
         assert_equal 'New things', document.title
@@ -106,7 +106,7 @@ class DocumentsControllerTest < ActionController::TestCase
   # ruby -I lib:test test/controllers/documents_controller_test.rb -n test_create_flame
   test "create flame" do
     Flamegraph.generate("graphs/rails_only/create_controller_flamegraph.html") do
-      post :create, document: { title: "New things", content: "Doing them" }
+      post :create, params: { document: { title: "New things", content: "Doing them" } }
 
       document = Document.last
       assert_equal 'New things', document.title
