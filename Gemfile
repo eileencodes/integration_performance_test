@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', github: 'rails/rails'
+gem 'rails', github: 'rails/rails', branch: 'master'
 gem 'arel', github: 'rails/arel'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -52,4 +52,5 @@ group :test do
   gem 'capybara'
   gem 'benchmark-ips'
   gem 'stackprof'
+  gem 'allocation_tracer'
 end

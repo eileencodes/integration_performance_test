@@ -42,6 +42,20 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # ruby -I lib:test test/integration/documents_integration_test.rb -n test_index_allocations
+  test "index allocations" do
+    ObjectSpace::AllocationTracer.setup(%i{path line type})
+    result = ObjectSpace::AllocationTracer.trace do
+      3000.times do
+        get '/documents'
+        assert_equal 200, response.status
+      end
+    end
+    result.sort_by { |info, counts| counts.first }.reverse.first(5).each do |r|
+      p r
+    end
+  end
+
   # ruby -I lib:test test/integration/documents_integration_test.rb -n test_index_flame
   test "index flame" do
     Flamegraph.generate("graphs/rails_only/index_integration_flamegraph.html") do

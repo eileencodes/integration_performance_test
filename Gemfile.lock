@@ -6,7 +6,8 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 34e562b0b71752c44ea0dac36325d3af6ec07c16
+  revision: 7210a0371f3739b8b8b02b56a3310421f0c3556e
+  branch: master
   specs:
     actionmailer (5.0.0.alpha)
       actionpack (= 5.0.0.alpha)
@@ -70,6 +71,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    allocation_tracer (0.4.2)
     benchmark-ips (2.1.1)
     builder (3.2.2)
     byebug (3.5.1)
@@ -98,7 +100,7 @@ GEM
       rake-compiler
     flamegraph (0.1.0)
       fast_stack
-    globalid (0.3.0)
+    globalid (0.3.2)
       activesupport (>= 4.1.0)
     hike (1.2.3)
     i18n (0.7.0)
@@ -177,6 +179,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  allocation_tracer
   arel!
   benchmark-ips
   byebug
