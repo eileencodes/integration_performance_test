@@ -11,12 +11,16 @@ class DocumentsIntegrationTest < ActionDispatch::IntegrationTest
   end
 end
 
-ObjectSpace.trace_object_allocations do
+ObjectSpace::AllocationTracer.setup(%i{path line type})
+result = ObjectSpace::AllocationTracer.trace do
   3000.times do
     Minitest.run_one_method(DocumentsIntegrationTest, 'test_create')
   end
 end
-
+p allocated: ObjectSpace::AllocationTracer.allocated_count_table[:T_STRING]
+result.sort_by { |info, counts| counts.first }.reverse.first(5).each do |r|
+  p r
+end
 __END__
 ObjectSpace::AllocationTracer.setup(%i{path line type})
 result = ObjectSpace::AllocationTracer.trace do
